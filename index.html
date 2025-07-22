@@ -160,7 +160,7 @@
     function sendToWhatsApp() {
       const name = document.getElementById("name").value;
       const message = document.getElementById("message").value;
-      const phone = "917974351516"; // 👈 Replace with your WhatsApp number (no +)
+      const phone = "917974351516"; 
 
       const url = `https://wa.me/${phone}?text=Hi,%20I'm%20${encodeURIComponent(name)}.%20${encodeURIComponent(message)}`;
 
