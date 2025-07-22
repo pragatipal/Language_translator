@@ -14,30 +14,35 @@
       align-items: center;
       justify-content: start;
       min-height: 100vh;
-      padding: 2rem 1rem;
+      padding: 1rem;
       overflow-x: hidden;
     }
 
     .glass-card {
       background: rgba(255, 255, 255, 0.2);
       border-radius: 20px;
-      padding: 2rem;
+      padding: 1.5rem;
       backdrop-filter: blur(10px);
       box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-      max-width: 500px;
+      max-width: 480px;
       width: 100%;
       text-align: center;
       color: #222;
       animation: popIn 1s ease-out;
+      margin-bottom: 1rem;
     }
 
     @keyframes popIn {
-      0% { transform: scale(0.8); opacity: 0; }
+      0% { transform: scale(0.9); opacity: 0; }
       100% { transform: scale(1); opacity: 1; }
     }
 
     h1 {
       font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    h3 {
       margin-bottom: 1rem;
     }
 
@@ -73,32 +78,35 @@
       color: red;
     }
 
-    .call-btn, .whatsapp-btn {
-      margin-top: 20px;
+    .call-btn, .whatsapp-btn, .spotify-btn {
+      margin-top: 16px;
       padding: 10px 20px;
       border: none;
       border-radius: 12px;
       font-size: 1rem;
       cursor: pointer;
-      background: #ff6f61;
       color: white;
       transition: 0.3s;
     }
 
-    .call-btn:hover, .whatsapp-btn:hover {
+    .call-btn {
+      background: #ff6f61;
+    }
+
+    .call-btn:hover {
       background: #e74c3c;
     }
 
+    .whatsapp-btn {
+      background: #25D366;
+    }
+
+    .whatsapp-btn:hover {
+      background: #1ebe5d;
+    }
+
     .spotify-btn {
-      margin-top: 12px;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 12px;
-      font-size: 1rem;
-      cursor: pointer;
       background: #1DB954;
-      color: white;
-      transition: 0.3s;
     }
 
     .spotify-btn:hover {
@@ -119,10 +127,19 @@
       resize: none;
       font-family: 'Poppins', sans-serif;
     }
+
+    ol {
+      padding-left: 1.2rem;
+    }
+
+    ol li {
+      margin-bottom: 10px;
+    }
   </style>
 </head>
 <body>
 
+  <!-- Main Apology Card -->
   <div class="glass-card">
     <h1>I am sorry 😔</h1>
 
@@ -139,7 +156,6 @@
         <button class="call-btn" type="button">Sidha call kr skte ho lol</button>
       </a>
 
-      <!-- Spotify Button -->
       <a href="https://open.spotify.com/playlist/3YDZxhylldXur5fd456GD2?si=1KnRTp0pSy2MkXRvIgbfyA&pi=rhse3IY8QwG3g" target="_blank">
         <button class="spotify-btn" type="button">Sunna 🎧</button>
       </a>
@@ -149,24 +165,26 @@
       <button class="whatsapp-btn" type="submit">Ping❤️</button>
     </form>
 
-    <!-- 10 Reasons Section -->
-    <div class="reasons" style="margin-top: 2rem; text-align:left;">
-      <h3 style="text-align:center;">10 Reasons to Forgive Me 💌</h3>
-      <ol style="padding-left: 1rem;">
-        <li>I’m cute and I like you a lot 😔</li>
-        <li>Hum dono ka career same hai toh tum mujhe referral doge badme 😤</li>
-        <li>Mathaye hath buliye debo 😇 </li>
-        <li>Same music choice bro</li>
-        <li>Tumhare friends mujhe jaante hai, now no escape 😅</li>
-        <li>Main gusse mein kuch bhi bol deti hoon but fir guilty feel karti hoon 😓</li>
-        <li>Maine ye cringe sa tumhare liye banaya 🫠</li>
-        <li>Bhalo ranna kore khawabo 🍲</li>
-      </ol>
-    </div>
-
     <div class="footer">
-      Dramatic Appologies<span class="heart">❤️</span> and hugs.
+      Dramatic Apologies <span class="heart">❤️</span> and hugs.
     </div>
+  </div>
+
+  <!-- Separate Reasons Card -->
+  <div class="glass-card">
+    <h3>Reasons to Forgive Me 💌</h3>
+    <ol class="reasons">
+      <li>I’m cute and I like you a lot 😔</li>
+      <li>Hum dono ka career same hai toh tum mujhe referral doge badme 😤</li>
+      <li>Mathaye hath buliye debo 😇</li>
+      <li>Same music choice bro</li>
+      <li>Tumhare friends mujhe jaante hai, now no escape 😅</li>
+      <li>Main gusse mein kuch bhi bol deti hoon but fir guilty feel karti hoon 😓</li>
+      <li>Maine ye cringe sa tumhare liye banaya 🫠</li>
+      <li>Bhalo ranna kore khawabo 🍲</li>
+      <li>I remember sab choti baatein, har ek</li>
+      <li>Tum smile karte ho toh duniya bhool jaati hoon 🌍❤️</li>
+    </ol>
   </div>
 
   <script>
