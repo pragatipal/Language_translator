@@ -45,6 +45,12 @@
       font-size: 1rem;
       margin: 1rem 0;
       line-height: 1.6;
+      text-align: left;
+    }
+
+    .reasons label {
+      display: block;
+      margin-bottom: 8px;
     }
 
     #typewriter p {
@@ -104,19 +110,19 @@
   <div class="glass-card">
     <h1>Why Aren’t You Picking Up My Calls? 😔📞</h1>
 
-    <div class="reasons">
-      <p>– Iphone ki cha mud gyi?</p>
-      <p>– Mere pyar me pad gye?</p>
-      <p>– Did I mess up?</p>
-    </div>
-
-    <div id="typewriter"></div>
-
-    <a href="tel:+917974351516">
-      <button class="call-btn">Sidha call kr skte ho lol</button>
-    </a>
-
     <form id="feedbackForm" onsubmit="sendToWhatsApp(); return false;">
+      <div class="reasons">
+        <label><input type="checkbox" name="reason" value="✔️ iPhone ki cha mud gyi?"> iPhone ki cha mud gyi?</label>
+        <label><input type="checkbox" name="reason" value="✔️ Mere pyar me pad gye?"> Mere pyar me pad gye?</label>
+        <label><input type="checkbox" name="reason" value="✔️ Did I mess up?"> Did I mess up?</label>
+      </div>
+
+      <div id="typewriter"></div>
+
+      <a href="tel:+917974351516">
+        <button class="call-btn" type="button">Sidha call kr skte ho lol</button>
+      </a>
+
       <input type="text" id="name" placeholder="Naam pta hai fir bhi.." required>
       <textarea id="message" placeholder="Jokes apart.. Kya hua btao?" rows="3" required></textarea>
       <button class="whatsapp-btn" type="submit">Ping❤️</button>
@@ -160,11 +166,16 @@
     }
 
     function sendToWhatsApp() {
-      const name = document.getElementById("name").value;
-      const message = document.getElementById("message").value;
+      const name = document.getElementById("name").value.trim();
+      const message = document.getElementById("message").value.trim();
+      const checkboxes = document.querySelectorAll('input[name="reason"]:checked');
+
+      let selectedReasons = '';
+      checkboxes.forEach(cb => selectedReasons += cb.value + "%0A");
+
       const phone = "917974351516";
 
-      const url = `https://wa.me/${phone}?text=Hi,%20I'm%20${encodeURIComponent(name)}.%0A${encodeURIComponent(message)}`;
+      const url = `https://wa.me/${phone}?text=${selectedReasons}%0A👤 Name: ${encodeURIComponent(name)}%0A📝 Message: ${encodeURIComponent(message)}`;
       window.open(url, '_blank');
     }
 
