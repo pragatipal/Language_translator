@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>I am sorry</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
   <style>
     body {
       margin: 0;
@@ -15,33 +15,30 @@
       justify-content: start;
       min-height: 100vh;
       overflow-x: hidden;
+      padding: 1rem;
     }
 
     .glass-card {
       background: rgba(255, 255, 255, 0.2);
       border-radius: 20px;
       padding: 1.5rem;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-      max-width: 480px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      max-width: 500px;
       width: 100%;
       text-align: center;
       color: #222;
       animation: popIn 1s ease-out;
-      margin-bottom: 1rem;
+      margin: 1rem auto;
     }
 
     @keyframes popIn {
-      0% { transform: scale(0.9); opacity: 0; }
+      0% { transform: scale(0.95); opacity: 0; }
       100% { transform: scale(1); opacity: 1; }
     }
 
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
-
-    h3 {
+    h1, h3 {
+      font-size: 1.8rem;
       margin-bottom: 1rem;
     }
 
@@ -54,7 +51,17 @@
 
     .reasons label {
       display: block;
-      margin-bottom: 8px;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer {
+      margin-top: 1.5rem;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+
+    .heart {
+      color: red;
     }
 
     #typewriter p {
@@ -67,18 +74,8 @@
       max-width: 100%;
     }
 
-    .footer {
-      margin-top: 2rem;
-      font-weight: bold;
-      font-size: 1rem;
-    }
-
-    .heart {
-      color: red;
-    }
-
     .call-btn, .whatsapp-btn, .spotify-btn {
-      margin-top: 16px;
+      margin-top: 14px;
       padding: 10px 20px;
       border: none;
       border-radius: 12px;
@@ -88,32 +85,17 @@
       transition: 0.3s;
     }
 
-    .call-btn {
-      background: #ff6f61;
-    }
+    .call-btn { background: #ff6f61; }
+    .call-btn:hover { background: #e74c3c; }
 
-    .call-btn:hover {
-      background: #e74c3c;
-    }
+    .whatsapp-btn { background: #25D366; }
+    .whatsapp-btn:hover { background: #1ebe5d; }
 
-    .whatsapp-btn {
-      background: #25D366;
-    }
-
-    .whatsapp-btn:hover {
-      background: #1ebe5d;
-    }
-
-    .spotify-btn {
-      background: #1DB954;
-    }
-
-    .spotify-btn:hover {
-      background: #1aa34a;
-    }
+    .spotify-btn { background: #1DB954; }
+    .spotify-btn:hover { background: #1aa34a; }
 
     form {
-      margin-top: 20px;
+      margin-top: 1.5rem;
       display: flex;
       flex-direction: column;
       gap: 10px;
@@ -132,19 +114,19 @@
     }
 
     ol li {
-      margin-bottom: 10px;
+      margin-bottom: 0.8rem;
     }
   </style>
 </head>
 <body>
 
-  <!-- Main Apology Card -->
+  <!-- Apology Card -->
   <div class="glass-card">
     <h1>I am sorry 😔</h1>
 
     <form id="feedbackForm" onsubmit="sendToWhatsApp(); return false;">
       <div class="reasons">
-        <label><input type="checkbox" name="reason" value="✔️ Ladki ka language khrab hai">Ladki ka Language khrab hai</label>
+        <label><input type="checkbox" name="reason" value="✔️ Ladki ka language khrab hai"> Ladki ka language khrab hai</label>
         <label><input type="checkbox" name="reason" value="✔️ Ladki ka dimag kharab hai"> Ladki ka dimag kharab hai</label>
         <label><input type="checkbox" name="reason" value="✔️ Ladki hi kharab hai"> Ladki hi kharab hai</label>
       </div>
@@ -159,7 +141,7 @@
         <button class="spotify-btn" type="button">Sunna 🎧</button>
       </a>
 
-      <input type="text" id="name" placeholder="Naam pta hai fir bhi.." required>
+      <input type="text" id="name" placeholder="Naam pta hai fir bhi.." required />
       <textarea id="message" placeholder="Grievances hehe " rows="3" required></textarea>
       <button class="whatsapp-btn" type="submit">Ping❤️</button>
     </form>
@@ -169,7 +151,7 @@
     </div>
   </div>
 
-  <!-- Separate Reasons Card -->
+  <!-- Separate Forgiveness Reasons Card -->
   <div class="glass-card">
     <h3>Reasons to Forgive Me 💌</h3>
     <ol class="reasons">
@@ -226,7 +208,6 @@
       checkboxes.forEach(cb => selectedReasons += cb.value + "%0A");
 
       const phone = "917974351516";
-
       const url = `https://wa.me/${phone}?text=${selectedReasons}%0A👤 Name: ${encodeURIComponent(name)}%0A📝 Message: ${encodeURIComponent(message)}`;
       window.open(url, '_blank');
     }
