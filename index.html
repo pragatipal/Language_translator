@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Funny Apology</title>
+  <title>Why Aren’t You Picking Up My Calls?</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
   <style>
     body {
@@ -12,8 +12,10 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: start;
       min-height: 100vh;
+      padding: 2rem 1rem;
+      overflow-x: hidden;
     }
 
     .glass-card {
@@ -23,8 +25,15 @@
       backdrop-filter: blur(10px);
       box-shadow: 0 8px 32px rgba(0,0,0,0.1);
       max-width: 500px;
+      width: 100%;
       text-align: center;
       color: #222;
+      animation: popIn 1s ease-out;
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0.8); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
     }
 
     h1 {
@@ -38,19 +47,55 @@
       line-height: 1.6;
     }
 
-    .typing-line {
-      font-weight: 500;
-      margin: 0.5rem auto;
-      overflow: hidden;
+    #typewriter p {
+      display: inline-block;
+      border-right: 2px solid #000;
       white-space: nowrap;
-      border-right: 2px solid black;
-      width: 0;
-      animation: none;
+      overflow: hidden;
+      margin: 0 auto;
+      font-size: 1rem;
+      max-width: 100%;
     }
 
-    @keyframes typing {
-      from { width: 0 }
-      to { width: 100% }
+    .footer {
+      margin-top: 2rem;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+
+    .heart {
+      color: red;
+    }
+
+    .call-btn, .whatsapp-btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      cursor: pointer;
+      background: #ff6f61;
+      color: white;
+      transition: 0.3s;
+    }
+
+    .call-btn:hover, .whatsapp-btn:hover {
+      background: #e74c3c;
+    }
+
+    form {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    input, textarea {
+      padding: 10px;
+      border: none;
+      border-radius: 10px;
+      resize: none;
+      font-family: 'Poppins', sans-serif;
     }
   </style>
 </head>
@@ -65,32 +110,69 @@
       <p>– Did I mess up?</p>
     </div>
 
-    <div class="typing-line" id="line1">I'm sorry, okay? I know I probably messed up.</div>
-    <div class="typing-line" id="line2">But ignoring me like this is illegal. Aapki fielding set ho sakti hai.</div>
+    <div id="typewriter"></div>
+
+    <a href="tel:+917974351516">
+      <button class="call-btn">Sidha call kr skte ho lol</button>
+    </a>
+
+    <form id="feedbackForm" onsubmit="sendToWhatsApp(); return false;">
+      <input type="text" id="name" placeholder="Naam pta hai fir bhi.." required>
+      <textarea id="message" placeholder="Jokes apart.. Kya hua btao?" rows="3" required></textarea>
+      <button class="whatsapp-btn" type="submit">Ping❤️</button>
+    </form>
+
+    <div class="footer">
+      Call krna agar alimony chahiye <span class="heart">❤️</span> and dramatic apologies.
+    </div>
   </div>
 
   <script>
-    function typeLine(lineId, delay) {
-      const el = document.getElementById(lineId);
-      const text = el.textContent;
-      el.textContent = '';
-      let i = 0;
-      setTimeout(() => {
-        const interval = setInterval(() => {
-          if (i < text.length) {
-            el.textContent += text.charAt(i);
-            i++;
-          } else {
-            clearInterval(interval);
-            el.style.borderRight = 'none'; // remove cursor after complete
-          }
-        }, 50);
-        el.style.animation = `typing ${text.length / 20}s steps(${text.length}) forwards`;
-      }, delay);
+    const lines = [
+      "I'm sorry, okay? Idk I probably messed up.",
+      "But ignoring me like this is illegal. Aapki fielding set ho sakti hai."
+    ];
+
+    const typewriter = document.getElementById("typewriter");
+    let lineIndex = 0;
+    let charIndex = 0;
+    let currentParagraph;
+
+    function typeLine() {
+      if (lineIndex < lines.length) {
+        if (!currentParagraph) {
+          currentParagraph = document.createElement("p");
+          typewriter.appendChild(currentParagraph);
+        }
+
+        const currentLine = lines[lineIndex];
+        if (charIndex < currentLine.length) {
+          currentParagraph.textContent += currentLine.charAt(charIndex);
+          charIndex++;
+          setTimeout(typeLine, 50);
+        } else {
+          currentParagraph = null;
+          lineIndex++;
+          charIndex = 0;
+          setTimeout(typeLine, 1000);
+        }
+      }
     }
 
-    typeLine('line1', 500);
-    typeLine('line2', 3000);
+    function sendToWhatsApp() {
+      const name = document.getElementById("name").value;
+      const message = document.getElementById("message").value;
+      const phone = "917974351516";
+
+      const url = `https://wa.me/${phone}?text=Hi,%20I'm%20${encodeURIComponent(name)}.%0A${encodeURIComponent(message)}`;
+      window.open(url, '_blank');
+    }
+
+    typeLine();
   </script>
+
+  <noscript>
+    <p style="text-align:center;color:#000;">JavaScript is off baki coder toh aap hain hi</p>
+  </noscript>
 </body>
 </html>
