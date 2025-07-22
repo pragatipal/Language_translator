@@ -12,9 +12,10 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: start;
       min-height: 100vh;
-      overflow: hidden;
+      padding: 2rem 1rem;
+      overflow-x: hidden;
     }
 
     .glass-card {
@@ -24,20 +25,15 @@
       backdrop-filter: blur(10px);
       box-shadow: 0 8px 32px rgba(0,0,0,0.1);
       max-width: 500px;
+      width: 100%;
       text-align: center;
       color: #222;
       animation: popIn 1s ease-out;
     }
 
     @keyframes popIn {
-      0% {
-        transform: scale(0.8);
-        opacity: 0;
-      }
-      100% {
-        transform: scale(1);
-        opacity: 1;
-      }
+      0% { transform: scale(0.8); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
     }
 
     h1 {
@@ -51,14 +47,14 @@
       line-height: 1.6;
     }
 
-    #typewriter {
-      font-size: 1rem;
+    #typewriter p {
+      display: inline-block;
       border-right: 2px solid #000;
       white-space: nowrap;
       overflow: hidden;
-      width: 0;
-      margin: 1rem auto;
-      max-width: 400px;
+      margin: 0 auto;
+      font-size: 1rem;
+      max-width: 100%;
     }
 
     .footer {
@@ -99,6 +95,7 @@
       border: none;
       border-radius: 10px;
       resize: none;
+      font-family: 'Poppins', sans-serif;
     }
   </style>
 </head>
@@ -120,9 +117,9 @@
     </a>
 
     <form id="feedbackForm" onsubmit="sendToWhatsApp(); return false;">
-      <input type="text" id="name" placeholder="Your Name" required>
-      <textarea id="message" placeholder="Say something..." rows="3" required></textarea>
-      <button class="whatsapp-btn" type="submit">Send on WhatsApp</button>
+      <input type="text" id="name" placeholder="Naam pta hai fir bhi.." required>
+      <textarea id="message" placeholder="Jokes apart.. Kya hua btao?" rows="3" required></textarea>
+      <button class="whatsapp-btn" type="submit">Ping</button>
     </form>
 
     <div class="footer">
@@ -139,20 +136,25 @@
     const typewriter = document.getElementById("typewriter");
     let lineIndex = 0;
     let charIndex = 0;
+    let currentParagraph;
 
     function typeLine() {
       if (lineIndex < lines.length) {
+        if (!currentParagraph) {
+          currentParagraph = document.createElement("p");
+          typewriter.appendChild(currentParagraph);
+        }
+
         const currentLine = lines[lineIndex];
         if (charIndex < currentLine.length) {
-          typewriter.innerHTML += currentLine.charAt(charIndex);
+          currentParagraph.textContent += currentLine.charAt(charIndex);
           charIndex++;
-          typewriter.style.width = (charIndex + 1) + 'ch';
           setTimeout(typeLine, 50);
         } else {
-          typewriter.innerHTML += "<br>";
+          currentParagraph = null;
           lineIndex++;
           charIndex = 0;
-          setTimeout(typeLine, 1000);
+          setTimeout(typeLine, 1000); // Pause before next line
         }
       }
     }
@@ -160,10 +162,9 @@
     function sendToWhatsApp() {
       const name = document.getElementById("name").value;
       const message = document.getElementById("message").value;
-      const phone = "917974351516"; 
+      const phone = "917974351516";
 
       const url = `https://wa.me/${phone}?text=Hi,%20I'm%20${encodeURIComponent(name)}.%20${encodeURIComponent(message)}`;
-
       window.open(url, '_blank');
     }
 
