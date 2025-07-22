@@ -51,19 +51,14 @@
       line-height: 1.6;
     }
 
-    .typing {
+    #typewriter {
+      font-size: 1rem;
       border-right: 2px solid #000;
       white-space: nowrap;
       overflow: hidden;
       width: 0;
-      animation: typing 4s steps(60, end) forwards;
       margin: 1rem auto;
       max-width: 400px;
-    }
-
-    @keyframes typing {
-      from { width: 0; }
-      to { width: 100%; }
     }
 
     .footer {
@@ -75,6 +70,36 @@
     .heart {
       color: red;
     }
+
+    .call-btn, .whatsapp-btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      cursor: pointer;
+      background: #ff6f61;
+      color: white;
+      transition: 0.3s;
+    }
+
+    .call-btn:hover, .whatsapp-btn:hover {
+      background: #e74c3c;
+    }
+
+    form {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    input, textarea {
+      padding: 10px;
+      border: none;
+      border-radius: 10px;
+      resize: none;
+    }
   </style>
 </head>
 <body>
@@ -85,20 +110,65 @@
     <div class="reasons">
       <p>– Iphone ki cha mud gyi?</p>
       <p>– Mere pyar me pad gye?</p>
-      <p>– Did I fuck up?</p>
+      <p>– Did I mess up?</p>
     </div>
 
-    <div class="typing" id="typed">
-      I'm sorry, okay? I know I probably messed up. But ignoring me like this is illegal. Aapki fielding set ho sakti hai.
-    </div>
-     <div class="typing" id="typed">
-      But ignoring me like this is illegal. <br> Aapki fielding set ho sakti hai.
-    </div>
+    <div id="typewriter"></div>
+
+    <a href="tel:+917974351516">
+      <button class="call-btn">📞 Call Me Now</button>
+    </a>
+
+    <form id="feedbackForm" onsubmit="sendToWhatsApp(); return false;">
+      <input type="text" id="name" placeholder="Your Name" required>
+      <textarea id="message" placeholder="Say something..." rows="3" required></textarea>
+      <button class="whatsapp-btn" type="submit">Send on WhatsApp</button>
+    </form>
 
     <div class="footer">
       Call krna agar alimony chahiye <span class="heart">❤️</span> and dramatic apologies.
     </div>
   </div>
+
+  <script>
+    const lines = [
+      "I'm sorry, okay? I know I probably messed up.",
+      "But ignoring me like this is illegal. Aapki fielding set ho sakti hai."
+    ];
+
+    const typewriter = document.getElementById("typewriter");
+    let lineIndex = 0;
+    let charIndex = 0;
+
+    function typeLine() {
+      if (lineIndex < lines.length) {
+        const currentLine = lines[lineIndex];
+        if (charIndex < currentLine.length) {
+          typewriter.innerHTML += currentLine.charAt(charIndex);
+          charIndex++;
+          typewriter.style.width = (charIndex + 1) + 'ch';
+          setTimeout(typeLine, 50);
+        } else {
+          typewriter.innerHTML += "<br>";
+          lineIndex++;
+          charIndex = 0;
+          setTimeout(typeLine, 1000);
+        }
+      }
+    }
+
+    function sendToWhatsApp() {
+      const name = document.getElementById("name").value;
+      const message = document.getElementById("message").value;
+      const phone = "917974351516"; // 👈 Replace with your WhatsApp number (no +)
+
+      const url = `https://wa.me/${phone}?text=Hi,%20I'm%20${encodeURIComponent(name)}.%20${encodeURIComponent(message)}`;
+
+      window.open(url, '_blank');
+    }
+
+    typeLine();
+  </script>
 
 </body>
 </html>
