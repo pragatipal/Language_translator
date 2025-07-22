@@ -89,6 +89,22 @@
       background: #e74c3c;
     }
 
+    .spotify-btn {
+      margin-top: 12px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      cursor: pointer;
+      background: #1DB954;
+      color: white;
+      transition: 0.3s;
+    }
+
+    .spotify-btn:hover {
+      background: #1aa34a;
+    }
+
     form {
       margin-top: 20px;
       display: flex;
@@ -112,8 +128,8 @@
 
     <form id="feedbackForm" onsubmit="sendToWhatsApp(); return false;">
       <div class="reasons">
-        <label><input type="checkbox" name="reason" value="✔️Language khrab hai"> Language khrab hai</label>
-        <label><input type="checkbox" name="reason" value="✔️ Ladki ka dimag kharab hai">Ladki ka dimag kharab hai</label>
+        <label><input type="checkbox" name="reason" value="✔️ Language khrab hai"> Language khrab hai</label>
+        <label><input type="checkbox" name="reason" value="✔️ Ladki ka dimag kharab hai"> Ladki ka dimag kharab hai</label>
         <label><input type="checkbox" name="reason" value="✔️ Ladki hi kharab hai"> Ladki hi kharab hai</label>
       </div>
 
@@ -123,13 +139,33 @@
         <button class="call-btn" type="button">Sidha call kr skte ho lol</button>
       </a>
 
+      <!-- Spotify Button -->
+      <a href="https://open.spotify.com/playlist/3YDZxhylldXur5fd456GD2?si=1KnRTp0pSy2MkXRvIgbfyA&pi=rhse3IY8QwG3g" target="_blank">
+        <button class="spotify-btn" type="button">Sunna 🎧</button>
+      </a>
+
       <input type="text" id="name" placeholder="Naam pta hai fir bhi.." required>
       <textarea id="message" placeholder="Grievances hehe " rows="3" required></textarea>
       <button class="whatsapp-btn" type="submit">Ping❤️</button>
     </form>
 
+    <!-- 10 Reasons Section -->
+    <div class="reasons" style="margin-top: 2rem; text-align:left;">
+      <h3 style="text-align:center;">10 Reasons to Forgive Me 💌</h3>
+      <ol style="padding-left: 1rem;">
+        <li>I’m cute and I like you a lot 😔</li>
+        <li>Hum dono ka career same hai toh tum mujhe referral doge badme 😤</li>
+        <li>Mathaye hath buliye debo 😇 </li>
+        <li>Same music choice bro</li>
+        <li>Tumhare friends mujhe jaante hai, now no escape 😅</li>
+        <li>Main gusse mein kuch bhi bol deti hoon but fir guilty feel karti hoon 😓</li>
+        <li>Maine ye cringe sa tumhare liye banaya 🫠</li>
+        <li>Bhalo ranna kore khawabo 🍲</li>
+      </ol>
+    </div>
+
     <div class="footer">
-      Call krna agar alimony chahiye <span class="heart">❤️</span> and dramatic apologies.
+      Dramatic Appologies<span class="heart">❤️</span> and hugs.
     </div>
   </div>
 
